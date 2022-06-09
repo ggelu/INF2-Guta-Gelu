@@ -1,0 +1,68 @@
+$pragMin: 600px;
+$pragMax: 1500px;
+
+@mixin container($latime: 800px){
+    width: $latime;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+    @if $latime > 200{
+        border: 1px solid red;
+    }
+    @else{
+        border: 1px dashed black;
+    }
+}
+
+body{   
+    @media screen and (max-width: $pragMin){
+        background-color: white;
+        font-size: small;
+        #canvasTitlu{
+            @include container(500px);
+        }
+    }
+    @media screen and (min-width: $pragMin) and (max-width: $pragMax){
+        background-color: darkgray;
+        font-size: medium;
+        #canvasTitlu{
+            @include container(600px);
+        }
+    }
+    @media screen and (min-width: $pragMax){
+        background-color: gray;
+        font-size: large;
+        #canvasTitlu{
+            @include container();
+        }
+    }
+}
+
+@mixin elipsa($rotatie: 70deg){
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: rotate($rotatie);
+}
+
+#controllerSVG{
+    @include container(200px);
+}
+
+#elipsaDreapta{
+    @include elipsa();
+}
+
+#elipsaStanga{
+    @include elipsa(110deg);
+}
+
+#button{
+    width: 190px;
+    height: 71px;
+    background: url("/imagini/buton.png");    
+}
+
+#button:hover{
+    background-position: 186px 0px;
+}
