@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Istoria consolelor de jocuri</title>
+    <link rel="icon" href="/imagini/favicon.png">
+    <link rel="stylesheet" href="/scss/stil.css">
+</head>
+<body>
+
+    <canvas id="canvasTitlu" width="800"></canvas>
+    <script>
+        var canvas=document.getElementById("canvasTitlu");
+        var context=canvas.getContext("2d");
+        
+        context.font="bold 30px Times New Roman";
+        context.fillStyle="red";
+        context.strokeStyle="black";
+        context.textAlign="center";
+        context.fillText("Istoria consolelor de jocuri video", canvas.width/2, canvas.height/2);
+        context.strokeText("Istoria consolelor de jocuri video", canvas.width/2, canvas.height/2);  
+        context.stroke();
+
+        var x=165;
+        for(let i=0; i<12; i++)
+        {      
+            context.beginPath();
+            context.arc(x,100,10,Math.PI,0);
+            context.strokeStyle="red";
+            context.stroke();
+
+            context.beginPath();
+            context.arc(x+20,98.725,10,0,Math.PI);
+            context.strokeStyle="red";
+            context.stroke();
+            x=x+40;
+        }
+    </script>
+
+
+    <h4>
+        The history of video game consoles, both home and handheld, had their origins in the 1970s. The concept of home consoles used to play games on a television set was founded by the 1972 Magnavox Odyssey, first conceived by Ralph H. Baer in 1966. Handheld consoles bore out from electro-mechanical games that had used mechanical controls and light-emitting diodes (LED) as visual indicators. Handheld electronic games had replaced the mechanical controls with electronic and digital components, and with the introduction of Liquid-crystal display (LCD) to create video-like screens with programmable pixels, systems like the Microvision and the Game & Watch became the first handheld video game consoles, and fully realized by the Game Boy system.
+    </h4>
+
+    <div>
+        <svg id="controllerSVG" width="200">
+            <rect x="79.5" y="42" width="37" height="45"></rect>
+            <ellipse id="elipsaDreapta" cx="122.5" cy="80" rx="40" ry="20"></ellipse>
+            <ellipse id="elipsaStanga" cx="72.5" cy="80" rx="40" ry="20"></ellipse>
+            <rect x="77.5" y="53.5" rx="5" ry="5" width="9" height="20" fill="white"></rect>
+            <rect x="72" y="59" rx="5" ry="5" width="20" height="9" fill="white"></rect>
+            <circle cx="115.7" cy="55" r="4" fill="white"></circle>
+            <circle cx="115.7" cy="70" r="4" fill="white"></circle>
+            <circle cx="107.5" cy="62.5" r="4" fill="white"></circle>
+            <circle cx="124" cy="62.5" r="4" fill="white"></circle>
+        </svg>
+    </div>
+
+    <h4>
+        Since then, home game consoles have progressed through technology cycles typically referred to as generations, each lasting approximately five years, during which competing manufacturers have produced consoles with similar specifications. With underlying improvements to technology such as smaller and faster microprocessors, digital communications, and changes to business models, a new generation of consoles is evolved from the previous one. This has led to a shifting landscape of console manufacturers in the marketplace; while early generations were led by manufacturers like Atari and Sega, the current modern generations have come down to three major competitors, Nintendo, Sony Interactive Entertainment, and Microsoft. Handheld consoles have seen similar advances, though typically are grouped into the same generations as home consoles. While there were larger numbers of manufacturers in the earlier generations for handhelds which included Nintendo, Atari, Sega, and Sony, the handheld market has waned since the introduction of mobile gaming in the mid-2000s, and as of today, the only major manufacturer in handheld gaming is Nintendo.    
+    </h4>
+
+    <button type="button" id="button"></button>
+    <br><br>
+    <div id="containerGraf"></div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script> 
+        var selectieButon=0;
+        if(sessionStorage.getItem('selectieButon')){
+            selectieButon=sessionStorage.getItem('selectieButon');
+            console.log(selectieButon);
+
+            if(selectieButon==1){
+                var data=$.get("grafuri.json",function(data){
+                    var img=new Image();
+                    img.src=data.caleGraf;
+                    img.setAttribute("id",data.idGraf);
+                    img.setAttribute("alt",data.altGraf);
+                    document.getElementById("containerGraf").appendChild(img);
+
+                    var img2=new Image();
+                    img2.src=data.caleGrafAlt;
+                    img2.setAttribute("id",data.idGrafAlt);
+                    img2.setAttribute("alt",data.altGrafAlt);
+                    document.getElementById("containerGraf").appendChild(img2);
+                    $("#grafAlt").hide();
+                });
+            }
+            else if(selectieButon==2){
+                var data=$.get("grafuri.json",function(data){
+                    var img=new Image();
+                    img.src=data.caleGraf;
+                    img.setAttribute("id",data.idGraf);
+                    img.setAttribute("alt",data.altGraf);
+                    document.getElementById("containerGraf").appendChild(img);
+
+                    var img2=new Image();
+                    img2.src=data.caleGrafAlt;
+                    img2.setAttribute("id",data.idGrafAlt);
+                    img2.setAttribute("alt",data.altGrafAlt);
+                    document.getElementById("containerGraf").appendChild(img2);
+                    $("#graf").hide();
+                });
+            }
+        }
+        else{
+            sessionStorage.setItem('selectieButon',1); 
+            selectieButon=sessionStorage.getItem('selectieButon');
+            var data=$.get("grafuri.json",function(data){
+                    var img=new Image();
+                    img.src=data.caleGraf;
+                    img.setAttribute("id",data.idGraf);
+                    img.setAttribute("alt",data.altGraf);
+                    document.getElementById("containerGraf").appendChild(img);
+
+                    var img2=new Image();
+                    img2.src=data.caleGrafAlt;
+                    img2.setAttribute("id",data.idGrafAlt);
+                    img2.setAttribute("alt",data.altGrafAlt);
+                    document.getElementById("containerGraf").appendChild(img2);
+                    $("#grafAlt").hide();
+                });
+        }               
+        $("button").click(function(){        
+            if(selectieButon==1){
+                $("#graf").hide();
+                $("#grafAlt").show();
+                sessionStorage.setItem('selectieButon',2); 
+                selectieButon=sessionStorage.getItem('selectieButon');
+            }
+            else if(selectieButon==2){
+                $("#graf").show();
+                $("#grafAlt").hide();
+                sessionStorage.setItem('selectieButon',1); 
+                selectieButon=sessionStorage.getItem('selectieButon');
+            }   
+        });
+        
+    </script>  
+
+    <br><br>
+
+    <h2>Bibliografie</h2>
+    <ul>
+        <li>
+            <a href="https://en.wikipedia.org/wiki/History_of_video_game_consoles">https://en.wikipedia.org/wiki/History_of_video_game_consoles</a>
+        </li>    
+        <li>
+            <a href="https://www.preceden.com/timelines/191578-history-of-video-game-consoles">https://www.preceden.com/timelines/191578-history-of-video-game-consoles</a>
+        </li>
+    </ul>
+
+</body>
+</html>
